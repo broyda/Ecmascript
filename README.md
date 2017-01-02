@@ -18,6 +18,6 @@ data: () => ({
     ids: [ 'Monday', 'Tuesday' ]    
   }),
   
-  const getMeetings = (state) => {
+  const getMeetings = (state) => 
     state.ids.map((id) => state.byId[id]);
-  }
+  
