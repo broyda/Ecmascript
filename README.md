@@ -1,8 +1,8 @@
 # Ecmascript
 
-## Recipe 1
+### Recipe 1
 
-## You want to create a slice of an object which has unique keys but also arrays linked to those unique keys
+### You want to create a slice of an object which has unique keys but also arrays linked to those unique keys
 
 data: () => ({
     content: {
