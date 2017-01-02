@@ -3,7 +3,7 @@
 #### Recipe 1
 
 #### You want to create a slice of an object which has unique keys but also arrays linked to those unique keys
-
+```
 data: () => ({
     content: {
       'Monday': {       
@@ -20,7 +20,8 @@ data: () => ({
   
   const getMeetings = (state) => 
     state.days.map((day) => state.content[day]);
-    
+```
+
 #### Recipe 2
 
 #### You want to abstract out object manipulation (merge, delete, join, slice, select) so in future you can plug in any new framework and replace the current one
@@ -53,3 +54,4 @@ const initialState = {
 };
 // Store with initialState
 const store = createStore(reducer, initialState, composeEnhancers(...enhancers));
+```
