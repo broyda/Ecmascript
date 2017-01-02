@@ -15,9 +15,9 @@ data: () => ({
         timestamp: 2,
       },
     },
-    ids: [ 'Monday', 'Tuesday' ]    
+    days: [ 'Monday', 'Tuesday' ]    
   }),
   
   const getMeetings = (state) => 
-    state.ids.map((id) => state.byId[id]);
+    state.days.map((day) => state.content[day]);
   
