@@ -30,6 +30,7 @@ See if you can create a helper and have object operations such as merge, delete,
 #### Recipe 3
 #### Integrate Redux Devtools and redux-logger (with diff set to true and perf timings enabled) in your workflow.
 
+```
 import { createStore, applyMiddleware, compose } from 'redux'
 import createLogger from 'redux-logger';
 const logger = createLogger({diff : true,
