@@ -63,7 +63,7 @@ const store = createStore(reducer, initialState, composeEnhancers(...enhancers))
 
 If you have babel-cli installed, then:
 ```
-babel test.js
+babel test_es6.js --out-file test_es5.js
 ```
 
 Outputs the ES5 code
