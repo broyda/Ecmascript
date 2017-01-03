@@ -55,3 +55,15 @@ const initialState = {
 // Store with initialState
 const store = createStore(reducer, initialState, composeEnhancers(...enhancers));
 ```
+#### Recipe 4
+#### Mock redux store
+
+#### Recipe 5
+#### View transpiled code (ES6 -> ES5)
+
+If you have babel-cli installed, then:
+```
+babel test.js
+```
+
+Outputs the ES5 code
