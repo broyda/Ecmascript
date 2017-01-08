@@ -67,3 +67,6 @@ babel test_es6.js --out-file test_es5.js
 ```
 
 Outputs the ES5 code
+
+#### Note
+Add type='text/javascript' when importing javascript files
