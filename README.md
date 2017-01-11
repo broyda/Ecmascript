@@ -79,5 +79,17 @@ Outputs the ES5 code
 #### Note 1
 Add type='text/javascript' when importing javascript files
 
+#### Note 2
+One way of exporting code
+```
+function test() {
+    // Do stuff
+}
+const Client = {test}
+export default Client;
+```
+
+
+
 
 
