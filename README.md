@@ -66,7 +66,18 @@ If you have babel-cli installed, then:
 babel test_es6.js --out-file test_es5.js
 ```
 
+#### Recipe 6
+#### Chrome debugging
+Features:
+ - Source map based debugging of JSX/ES7
+ - XHR breakpoints - conditional when url contains "weather"
+ - Event Listener breakpoints
+ - DOM breakpoint - subtree modifications
+
 Outputs the ES5 code
 
-#### Note
+#### Note 1
 Add type='text/javascript' when importing javascript files
+
+
+
