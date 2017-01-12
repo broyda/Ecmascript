@@ -92,11 +92,11 @@ export default Client;
 
 
 ### React methods
--getInitialState()
--this.setState(attribute (can be an array) : some value (can come from a service))
+getInitialState()
+this.setState(attribute (can be an array) : some value (can come from a service))
  can then access using this.state.[attribute which can be an array as well]
--render()
--props can pass in functions too for example, onRowClick={(rowId) => // some code}
+render()
+props can pass in functions too for example, onRowClick={(rowId) => // some code}
 
 ### Patterns
 
