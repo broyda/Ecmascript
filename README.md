@@ -91,5 +91,18 @@ export default Client;
 
 
 
+### React methods
+-getInitialState()
+-this.setState(attribute (can be an array) : some value (can come from a service))
+ can then access using this.state.[attribute which can be an array as well]
+-render()
+-props can pass in functions too for example, onRowClick={(rowId) => // some code}
 
+### Patterns
+
+If components B and C updates a shared state, then A (which contains the shared state) is composed of B and C
+
+A [shared state - pass state updater functions to the childs]
+|\
+B C
 
