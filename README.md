@@ -102,8 +102,25 @@ props can pass in functions too for example, onRowClick={(rowId) => // some code
 ### Patterns
 
 If components B and C updates a shared state, then A (which contains the shared state) is composed of B and C
-
+```
 A [shared state - pass state updater functions to the childs]
 |\
 B C
+```
+
+
+### Jest/Enzyme
+API
+```
+wrapper.find
+wrapper.containsAnyMatchingElements
+    someinput = wrapper.find('input').first()
+    input.simulate(eventname say 'click', )
+access shallow wrapper's state 
+    wrapper.state()
+    wrapper.update() - invokes render() of the shallow component (in Jest/Enzyme setup setState does NOT rerender - that has to be forcefully invoked (note: input.simulate() internally invokes update()
+html() as a debugging aid
+afterEach() mockClear() to start with a new slate
+
+```
 
