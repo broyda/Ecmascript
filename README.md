@@ -122,5 +122,19 @@ access shallow wrapper's state
 html() as a debugging aid
 afterEach() mockClear() to start with a new slate
 
+### ES6 notes
+let {something} = this.state
+
+is the same as explicitly declaring:
+
+let something = this.state.something
+
+Similarly:
+var {x, y} = this.props;
+is the same as:
+var x = this.props.x;
+var y = this.props.y;
+
+
 ```
 
