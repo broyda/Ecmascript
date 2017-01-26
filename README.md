@@ -138,3 +138,6 @@ var y = this.props.y;
 
 ```
 
+### Redux notes
+Create separate root keys within the store
+
