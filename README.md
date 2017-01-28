@@ -108,6 +108,18 @@ A [shared state - pass state updater functions to the childs]
 B C
 ```
 
+### You want to fire a function when setState() has been called.
+Add an optional callback as second parameter
+```
+this.setState({done: true},
+() => {
+    console.log('do something below');
+    // functionality
+}
+)
+
+```
+
 
 ### Jest/Enzyme
 API
