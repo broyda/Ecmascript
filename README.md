@@ -117,10 +117,7 @@ this.setState({done: true},
     // functionality
 }
 )
-
 ```
-
-
 ### Jest/Enzyme
 API
 ```
@@ -153,3 +150,20 @@ var y = this.props.y;
 ### Redux notes
 Create separate root keys within the store
 
+
+### getDefaultProps
+Object returned by getDefaultProps(...) shared across instances
+
+### Context
+
+In the parent where the context 'reside'
+-----------------------------------------
+childContextTypes()
+getChildContext() - (called everytime state or prop change) - similar to getInitialState() 
+
+In the child that 'consumes' the context
+---------------------------------------
+contextType: { // Define}
+this.state.foo
+this.props.foo
+this.context.foo
