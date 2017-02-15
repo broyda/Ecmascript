@@ -170,16 +170,22 @@ this.context.foo
 
 ###Common operations (using ES7 and lodash counterpart)
 1. Add to the end of the list
+```
 a = [1,2,3] -> b = 4
 a.concat(b)
+```
 
 2. Delete from the list
+```
 a = [1, 2, 3, 4, 5, 6]    X 4
 x : [...a.slice(0, 2),
      ...a.slice(3, 5)
 ]
+```
 
 3. Find (list holds objects)
+```
 persons.findIndex(
    (person) => person.empid === passinempid
 );
+```
