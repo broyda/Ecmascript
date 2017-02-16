@@ -183,9 +183,13 @@ x : [...a.slice(0, 2),
 ]
 ```
 
-3. Find (list holds objects)
+3. Find (list holds objects) - find(...) and findIndex(...)
 ```
 persons.findIndex(
+   (person) => person.empid === passinempid
+);
+
+persons.find(
    (person) => person.empid === passinempid
 );
 ```
