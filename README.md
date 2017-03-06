@@ -67,6 +67,28 @@ babel test_es6.js --out-file test_es5.js
 ```
 
 #### Recipe 6
+#### Reducer composition (reducer calling another reducer)
+```
+Root Reducer
+  |
+  |
+  |
+  SubtreeReducer1
+  |
+  |
+  |
+  SubtreeReducer2
+        |
+        |
+        |
+        SubSubtreeReducer3
+               |
+               |
+               |
+               SubSubSubtreeReducer4
+```
+
+#### Recipe 7
 #### Chrome debugging
 Features:
  - Source map based debugging of JSX/ES7
