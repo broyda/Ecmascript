@@ -98,6 +98,9 @@ Features:
 
 Outputs the ES5 code
 
+#### Recipe 8
+#### Reducers are called post createStore(...)
+
 #### Note 1
 Add type='text/javascript' when importing javascript files
 
