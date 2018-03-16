@@ -1,4 +1,4 @@
-# Ecmascript (my own notes - need not be correct and/or complete but I will keep on updating this as I understand them more)
+# Ecmascript
 
 #### Recipe 1
 
