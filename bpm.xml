@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+	xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+	xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+	xmlns:processMgr="http://processMgr" id="Definitions_1"
+	targetNamespace="http://bpmn.io/schema/bpmn">
+	<bpmn:process id="Process_1" isExecutable="false">
+		<bpmn:startEvent id="StartEvent_1"
+			processMgr:activity_name="start" name="Start">
+			<bpmn:outgoing>SequenceFlow_0ilomgi</bpmn:outgoing>
+		</bpmn:startEvent>
+		<bpmn:scriptTask id="ScriptTask_0yq2j2z"
+			processMgr:activity_name="Validating Insured"
+			processMgr:activity_des="to validate primary insured"
+			processMgr:handler_name="validateInsured"
+			processMgr:handler_api_name="PersonHandler" name="Validate Insured">
+			<bpmn:incoming>SequenceFlow_0ilomgi</bpmn:incoming>
+			<bpmn:outgoing>SequenceFlow_0t4e463</bpmn:outgoing>
+		</bpmn:scriptTask>
+		<bpmn:scriptTask id="ScriptTask_1shd07e"
+			processMgr:activity_name="Validate Persons"
+			processMgr:activity_des="to validate persons"
+			processMgr:handler_name="validatePersons"
+			processMgr:handler_api_name="PersonHandler" name="Validate Person">
+			<bpmn:incoming>SequenceFlow_0t4e463</bpmn:incoming>
+			<bpmn:outgoing>SequenceFlow_0ommoje</bpmn:outgoing>
+		</bpmn:scriptTask>
+		<bpmn:scriptTask id="ScriptTask_146mdz3"
+			processMgr:activity_name="Validate Vehicles"
+			processMgr:activity_des="to validate vehicles"
+			processMgr:handler_name="validateVehicles"
+			processMgr:handler_api_name="VehicleHandler" name="Validate Vehicles">
+			<bpmn:incoming>SequenceFlow_0ommoje</bpmn:incoming>
+			<bpmn:outgoing>SequenceFlow_1wojotl</bpmn:outgoing>
+		</bpmn:scriptTask>
+		<bpmn:scriptTask id="ScriptTask_09wzomv"
+			processMgr:activity_name="Risk Decision"
+			processMgr:activity_des="to assess risk" processMgr:handler_name="assesRisk"
+			processMgr:handler_api_name="DatasolutionsHandler"
+			name="Validate Coverages">
+			<bpmn:incoming>SequenceFlow_1wojotl</bpmn:incoming>
+			<bpmn:outgoing>SequenceFlow_09x6fhn</bpmn:outgoing>
+		</bpmn:scriptTask>
+		<bpmn:scriptTask id="ScriptTask_0y6pgmt"
+			processMgr:activity_name="Premium Calculation"
+			processMgr:activity_des="to calculate premium"
+			processMgr:handler_name="getPremium"
+			processMgr:handler_api_name="AutoRatingHandler" name="Get Price">
+			<bpmn:incoming>SequenceFlow_1dwipgu</bpmn:incoming>
+			<bpmn:outgoing>SequenceFlow_1er8n3d</bpmn:outgoing>
+		</bpmn:scriptTask>
+		<bpmn:scriptTask id="ScriptTask_0j4cjvs"
+			processMgr:activity_name="Discounts"
+			processMgr:activity_des="to apply discounts"
+			processMgr:handler_name="getAvailableDiscounts"
+			processMgr:handler_api_name="AutoRatingHandler"
+			name="Calculate Discounts &#38; Surcharges">
+			<bpmn:incoming>SequenceFlow_1er8n3d</bpmn:incoming>
+			<bpmn:outgoing>SequenceFlow_12m72rc</bpmn:outgoing>
+		</bpmn:scriptTask>
+		<bpmn:endEvent id="EndEvent_1ah5sfq" name="End">
+			<bpmn:incoming>SequenceFlow_1yow3j6</bpmn:incoming>
+		</bpmn:endEvent>
+		<bpmn:sequenceFlow id="SequenceFlow_0ilomgi" sourceRef="StartEvent_1" targetRef="ScriptTask_0yq2j2z" />
+		<bpmn:sequenceFlow id="SequenceFlow_0t4e463" sourceRef="ScriptTask_0yq2j2z" targetRef="ScriptTask_1shd07e" />
+		<bpmn:sequenceFlow id="SequenceFlow_0ommoje" sourceRef="ScriptTask_1shd07e" targetRef="ScriptTask_146mdz3" />
+		<bpmn:scriptTask id="ScriptTask_19vrl8z"
+			processMgr:activity_name="Save Transaction"
+			processMgr:activity_des="to save entire transaction"
+			processMgr:handler_name="saveTrasaction"
+			processMgr:handler_api_name="CustomerHandler" name="Save Transaction">
+			<bpmn:incoming>SequenceFlow_12m72rc</bpmn:incoming>
+			<bpmn:outgoing>SequenceFlow_1yow3j6</bpmn:outgoing>
+		</bpmn:scriptTask>
+		<bpmn:sequenceFlow id="SequenceFlow_1yow3j6"
+			sourceRef="ScriptTask_19vrl8z" targetRef="EndEvent_1ah5sfq" />
+		<bpmn:serviceTask id="UserTask_0tn1h83"
+			name="Risk Assessment">
+			<bpmn:incoming>SequenceFlow_0tdhn98</bpmn:incoming>
+			<bpmn:outgoing>SequenceFlow_1dwipgu</bpmn:outgoing>
+		</bpmn:serviceTask>
+		<bpmn:task id="Task_1ehfvo7"
+			processMgr:activity_name="RideShareAPI"
+			processMgr:activity_des="Services for ride share"
+			processMgr:handler_name="RideShareHandler"
+			processMgr:handler_api_name="RideShareHandlerAPI"
+			name="Validate Rideshare ">
+			<bpmn:incoming>SequenceFlow_09x6fhn</bpmn:incoming>
+			<bpmn:outgoing>SequenceFlow_0tdhn98</bpmn:outgoing>
+		</bpmn:task>
+		<bpmn:sequenceFlow id="SequenceFlow_1wojotl" sourceRef="ScriptTask_146mdz3" targetRef="ScriptTask_09wzomv" />
+		<bpmn:sequenceFlow id="SequenceFlow_09x6fhn" sourceRef="ScriptTask_09wzomv" targetRef="Task_1ehfvo7" />
+		<bpmn:sequenceFlow id="SequenceFlow_12m72rc" sourceRef="ScriptTask_0j4cjvs" targetRef="ScriptTask_19vrl8z" />
+		<bpmn:sequenceFlow id="SequenceFlow_1er8n3d" sourceRef="ScriptTask_0y6pgmt" targetRef="ScriptTask_0j4cjvs" />
+		<bpmn:sequenceFlow id="SequenceFlow_1dwipgu" sourceRef="UserTask_0tn1h83" targetRef="ScriptTask_0y6pgmt" />
+		<bpmn:sequenceFlow id="SequenceFlow_0tdhn98" sourceRef="Task_1ehfvo7" targetRef="UserTask_0tn1h83" />
+	</bpmn:process>
+	<bpmndi:BPMNDiagram id="BPMNDiagram_1">
+		<bpmndi:BPMNPlane id="BPMNPlane_1"
+			bpmnElement="Process_1">
+			<bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+				<dc:Bounds x="92" y="44" width="36" height="36" />
+				<bpmndi:BPMNLabel>
+					<dc:Bounds x="98" y="80" width="24" height="13" />
+				</bpmndi:BPMNLabel>
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape id="ScriptTask_0yq2j2z_di" bpmnElement="ScriptTask_0yq2j2z">
+				<dc:Bounds x="161" y="22" width="100" height="80" />
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape id="ScriptTask_1shd07e_di" bpmnElement="ScriptTask_1shd07e">
+				<dc:Bounds x="307" y="22" width="100" height="80" />
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape id="ScriptTask_146mdz3_di" bpmnElement="ScriptTask_146mdz3">
+				<dc:Bounds x="450" y="22" width="100" height="80" />
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape id="ScriptTask_09wzomv_di" bpmnElement="ScriptTask_09wzomv">
+				<dc:Bounds x="620" y="22" width="100" height="80" />
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape id="ScriptTask_0y6pgmt_di" bpmnElement="ScriptTask_0y6pgmt">
+				<dc:Bounds x="962" y="12" width="100" height="80" />
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape id="ScriptTask_0j4cjvs_di" bpmnElement="ScriptTask_0j4cjvs">
+				<dc:Bounds x="1101" y="12" width="100" height="80" />
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape id="EndEvent_1ah5sfq_di" bpmnElement="EndEvent_1ah5sfq">
+				<dc:Bounds x="1133" y="274" width="36" height="36" />
+				<bpmndi:BPMNLabel>
+					<dc:Bounds x="1141" y="310" width="20" height="12" />
+				</bpmndi:BPMNLabel>
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNEdge id="SequenceFlow_0ilomgi_di" bpmnElement="SequenceFlow_0ilomgi">
+				<di:waypoint xsi:type="dc:Point" x="128" y="62" />
+				<di:waypoint xsi:type="dc:Point" x="161" y="62" />
+				<bpmndi:BPMNLabel>
+					<dc:Bounds x="145" y="47" width="0" height="0" />
+				</bpmndi:BPMNLabel>
+			</bpmndi:BPMNEdge>
+			<bpmndi:BPMNEdge id="SequenceFlow_0t4e463_di" bpmnElement="SequenceFlow_0t4e463">
+				<di:waypoint xsi:type="dc:Point" x="261" y="62" />
+				<di:waypoint xsi:type="dc:Point" x="307" y="62" />
+				<bpmndi:BPMNLabel>
+					<dc:Bounds x="284" y="47" width="0" height="0" />
+				</bpmndi:BPMNLabel>
+			</bpmndi:BPMNEdge>
+			<bpmndi:BPMNEdge id="SequenceFlow_0ommoje_di" bpmnElement="SequenceFlow_0ommoje">
+				<di:waypoint xsi:type="dc:Point" x="407" y="62" />
+				<di:waypoint xsi:type="dc:Point" x="450" y="62" />
+				<bpmndi:BPMNLabel>
+					<dc:Bounds x="429" y="47" width="0" height="0" />
+				</bpmndi:BPMNLabel>
+			</bpmndi:BPMNEdge>
+			<bpmndi:BPMNShape id="ScriptTask_19vrl8z_di" bpmnElement="ScriptTask_19vrl8z">
+				<dc:Bounds x="1101" y="149" width="100" height="80" />
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNEdge id="SequenceFlow_1yow3j6_di" bpmnElement="SequenceFlow_1yow3j6">
+				<di:waypoint xsi:type="dc:Point" x="1151" y="229" />
+				<di:waypoint xsi:type="dc:Point" x="1151" y="274" />
+				<bpmndi:BPMNLabel>
+					<dc:Bounds x="1166" y="251.5" width="0" height="0" />
+				</bpmndi:BPMNLabel>
+			</bpmndi:BPMNEdge>
+			<bpmndi:BPMNShape id="ServiceTask_02jj7tk_di" bpmnElement="UserTask_0tn1h83">
+				<dc:Bounds x="866" y="149" width="100" height="80" />
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNShape id="Task_1ehfvo7_di" bpmnElement="Task_1ehfvo7">
+				<dc:Bounds x="763" y="22" width="100" height="80" />
+			</bpmndi:BPMNShape>
+			<bpmndi:BPMNEdge id="SequenceFlow_1wojotl_di" bpmnElement="SequenceFlow_1wojotl">
+				<di:waypoint xsi:type="dc:Point" x="550" y="62" />
+				<di:waypoint xsi:type="dc:Point" x="620" y="62" />
+				<bpmndi:BPMNLabel>
+					<dc:Bounds x="585" y="37" width="0" height="0" />
+				</bpmndi:BPMNLabel>
+			</bpmndi:BPMNEdge>
+			<bpmndi:BPMNEdge id="SequenceFlow_09x6fhn_di" bpmnElement="SequenceFlow_09x6fhn">
+				<di:waypoint xsi:type="dc:Point" x="720" y="62" />
+				<di:waypoint xsi:type="dc:Point" x="741" y="62" />
+				<di:waypoint xsi:type="dc:Point" x="741" y="62" />
+				<di:waypoint xsi:type="dc:Point" x="763" y="62" />
+				<bpmndi:BPMNLabel>
+					<dc:Bounds x="756" y="62" width="0" height="0" />
+				</bpmndi:BPMNLabel>
+			</bpmndi:BPMNEdge>
+			<bpmndi:BPMNEdge id="SequenceFlow_12m72rc_di" bpmnElement="SequenceFlow_12m72rc">
+				<di:waypoint xsi:type="dc:Point" x="1151" y="92" />
+				<di:waypoint xsi:type="dc:Point" x="1151" y="149" />
+				<bpmndi:BPMNLabel>
+					<dc:Bounds x="1166" y="110.5" width="0" height="0" />
+				</bpmndi:BPMNLabel>
+			</bpmndi:BPMNEdge>
+			<bpmndi:BPMNEdge id="SequenceFlow_1er8n3d_di" bpmnElement="SequenceFlow_1er8n3d">
+				<di:waypoint xsi:type="dc:Point" x="1062" y="52" />
+				<di:waypoint xsi:type="dc:Point" x="1101" y="52" />
+				<bpmndi:BPMNLabel>
+					<dc:Bounds x="1082" y="27" width="0" height="0" />
+				</bpmndi:BPMNLabel>
+			</bpmndi:BPMNEdge>
+			<bpmndi:BPMNEdge id="SequenceFlow_1dwipgu_di" bpmnElement="SequenceFlow_1dwipgu">
+				<di:waypoint xsi:type="dc:Point" x="966" y="189" />
+				<di:waypoint xsi:type="dc:Point" x="1012" y="189" />
+				<di:waypoint xsi:type="dc:Point" x="1012" y="92" />
+				<bpmndi:BPMNLabel>
+					<dc:Bounds x="989" y="174" width="0" height="0" />
+				</bpmndi:BPMNLabel>
+			</bpmndi:BPMNEdge>
+			<bpmndi:BPMNEdge id="SequenceFlow_0tdhn98_di" bpmnElement="SequenceFlow_0tdhn98">
+				<di:waypoint xsi:type="dc:Point" x="813" y="102" />
+				<di:waypoint xsi:type="dc:Point" x="813" y="126" />
+				<di:waypoint xsi:type="dc:Point" x="916" y="126" />
+				<di:waypoint xsi:type="dc:Point" x="916" y="149" />
+				<bpmndi:BPMNLabel>
+					<dc:Bounds x="865" y="101" width="0" height="0" />
+				</bpmndi:BPMNLabel>
+			</bpmndi:BPMNEdge>
+		</bpmndi:BPMNPlane>
+	</bpmndi:BPMNDiagram>
+</bpmn:definitions>
